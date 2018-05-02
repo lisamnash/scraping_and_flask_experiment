@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Lisa">
+
+    <title>{{ data['product'] }}</title>
+
+    <!-- Bootstrap core CSS -->
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/bootstrap.min.css') }}">
+
+    <!-- Custom styles for this template -->
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/album.css') }}">
+
+     <!-- comment here -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/auto-complete.css') }}">
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">Phones by HKT</h4>
+              <p class="text-muted">I should say something here?</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                <li><a href="#" class="text-white">Like on Facebook</a></li>
+                <li><a href="#" class="text-white">Email me</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="/" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <strong>HKT Phones</strong>
+          </a>
+         <form class="form-inline" autocomplete="off" action= "/test_bootstrap/">
+          <div class="form-group">
+
+            <input id="hero-demo" class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search" name="product">
+
+           </div>
+
+         </form>
+        </div>
+      </div>
+    </header>
+
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">{{ data['product'] }}</h1>
+          <p class="lead text-muted">If you like {{ data['product'] }}, you may also like...</p>
+        </div>
+      </section>
+
+       <div class="album py-7 bg-light">
+        <div class="container">
+
+          <div class="row"">
+
+            <div class="col-md-4 offset-md-2">
+              <div class="card mb-4 box-shadow h-100">
+
+                <img src = {{ data['product_image_url'] }} class="card-img-top">
+                <div class="card-body h-100">
+                  <p class="card-text">{{ data['product'] }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <div class="col-md-4">
+              <div class="card mb-4 box-shadow h-100">
+
+
+                <div class="card-body h-100">
+                   <h5 class="card-title">{{ data['product'] }}</h5>
+
+                  <table class="table table mb-0">
+                    {% for dict in single_data %}
+                  <tr>
+                    <td>
+                      {{ dict[0] }} : {{ dict[1] }}
+                    </td>
+                     </tr>
+                    {% endfor %}
+
+
+                  </table>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="album py-3 bg-light">
+        <div class="container">
+
+          <div class="row">
+           {% for dict in data['metadata_and_images'] %}
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow h-100">
+
+                <img src = {{ dict['image_url'] }} class="card-img-top" width="20%">
+                <div class="card-body h-100">
+                  <p class="card-text">{{ dict['name'] }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <input type="button" class="btn btn-sm btn-outline-secondary" value="View" onclick='location.href = "/test_bootstrap/?product={{ dict["name"] | replace("+", "%2B") }}";'>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+        <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+
+
+    <script type="text/javascript" src="{{ url_for('static',filename='js/auto-complete.js') }}"></script>
+
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js" async defer></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/auto-complete.js') }}"></script>
+            <script>
+        var demo1 = new autoComplete({
+            selector: '#hero-demo',
+            minChars: 1,
+            source: function(term, suggest){
+                term = term.toLowerCase();
+                var choices = {{phones|safe}}
+
+                var suggestions = [];
+                for (i=0;i<choices.length;i++)
+                    if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+                suggest(suggestions);
+            }
+        });
+
+        if (~window.location.href.indexOf('http')) {
+            (function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();
+            (function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=114593902037957";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+            document.getElementById('github_social').innerHTML = '\
+                <iframe style="float:left;margin-right:15px" src="//ghbtns.com/github-btn.html?user=Pixabay&repo=JavaScript-autoComplete&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>\
+                <iframe style="float:left;margin-right:15px" src="//ghbtns.com/github-btn.html?user=Pixabay&repo=JavaScript-autoComplete&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>\
+            ';
+        }
+        my_autoComplete.destroy();
+    </script>
+  </body>
+</html>
