@@ -4,7 +4,7 @@ This is an experiment I did over a few days to learn how to scrape a website wit
 
 For now, here's an image of what my final product looks like.
 
-![](output.png)
+![](output2.png)
 
 Some future things to do include separating the backend and frontend, storing the data in a sensible way in a database, and I'm sure lots of other things.
 
